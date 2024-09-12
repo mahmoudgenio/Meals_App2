@@ -1,5 +1,6 @@
 package com.example.mealsapp.ui.screens.meals
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,6 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.domain.entity.meals.Category
+import com.google.gson.Gson
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
@@ -37,13 +39,15 @@ fun MealsScreen(nav : NavController ?= null,viewModel: MealsViewModel = hiltView
 
     LazyColumn(modifier = Modifier.fillMaxSize().padding(10.dp), verticalArrangement = Arrangement.spacedBy(5.dp), horizontalAlignment = Alignment.Start) {
           items(category.categories){
-              ItemMeal(it)
+             // val categoryJson = Gson().toJson(it)
+              ItemMeal(it, action = {nav?.navigate("MealsDetailsScreen")})
           }
     }
 }
 @Composable
-fun ItemMeal(category: Category, modifier: Modifier = Modifier) {
+fun ItemMeal(category: Category, modifier: Modifier = Modifier, action : () -> Unit) {
     Card(
+        onClick = action,
         modifier
             .fillMaxWidth()
             .height(100.dp)

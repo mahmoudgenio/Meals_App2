@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import coil.network.HttpException
 import com.example.domain.entity.meals.MealsModelResponse
+import com.example.domain.repo.meals.MealsRepo
 import com.example.domain.usecase.meals.GetMealsCategoriesFromRemote
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,6 +30,7 @@ class MealsViewModel @Inject constructor(private val getMealsCategoriesFromRemot
             try {
                val data = getMealsCategoriesFromRemote()
                 _categories.update { data }
+
             }catch (ex : Exception){
                 if(ex is HttpException){
                     Log.d(TAG, "getMeals: ${ex.message}")

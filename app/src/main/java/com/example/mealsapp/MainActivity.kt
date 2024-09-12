@@ -12,7 +12,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.mealsapp.ui.screens.meals.MealsScreen
+import com.example.mealsapp.ui.screens.mealsdetails.MealsDetailsScreen
 import com.example.mealsapp.ui.theme.MealsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,9 +31,22 @@ class MainActivity : ComponentActivity() {
         setContent {
             MealsAppTheme {
                 Box(modifier = Modifier.fillMaxSize()) {
-                    MealsScreen()
+                    MealsApp()
                 }
             }
         }
     }
+}
+
+@Composable
+fun MealsApp(){
+  val navHostController = rememberNavController()
+
+  NavHost(navController = navHostController, startDestination = "MealsScreen") {
+   composable("MealsScreen"){ MealsScreen(navHostController)}
+   composable("MealsDetailsScreen"){ MealsDetailsScreen(navHostController) }
+
+  }
+
+
 }
