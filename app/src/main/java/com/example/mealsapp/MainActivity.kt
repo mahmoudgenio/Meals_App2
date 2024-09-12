@@ -17,6 +17,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.mealsapp.ui.Screen
 import com.example.mealsapp.ui.screens.meals.MealsScreen
 import com.example.mealsapp.ui.screens.mealsdetails.MealsDetailsScreen
 import com.example.mealsapp.ui.theme.MealsAppTheme
@@ -42,9 +43,9 @@ class MainActivity : ComponentActivity() {
 fun MealsApp(){
   val navHostController = rememberNavController()
 
-  NavHost(navController = navHostController, startDestination = "MealsScreen") {
-   composable("MealsScreen"){ MealsScreen(navHostController)}
-   composable("MealsDetailsScreen"){ MealsDetailsScreen(navHostController) }
+  NavHost(navController = navHostController, startDestination = Screen.MealsScreen.route) {
+   composable(Screen.MealsScreen.route){ MealsScreen(navHostController)}
+   composable(Screen.MealsDetailsScreen.route){ MealsDetailsScreen(navHostController) }
 
   }
 

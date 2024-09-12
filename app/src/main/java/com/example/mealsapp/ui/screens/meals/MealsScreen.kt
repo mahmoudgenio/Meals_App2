@@ -29,6 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.domain.entity.meals.Category
+import com.example.mealsapp.ui.Screen
 import com.google.gson.Gson
 
 @Preview(showSystemUi = true, showBackground = true)
@@ -40,7 +41,7 @@ fun MealsScreen(nav : NavController ?= null,viewModel: MealsViewModel = hiltView
     LazyColumn(modifier = Modifier.fillMaxSize().padding(10.dp), verticalArrangement = Arrangement.spacedBy(5.dp), horizontalAlignment = Alignment.Start) {
           items(category.categories){
              // val categoryJson = Gson().toJson(it)
-              ItemMeal(it, action = {nav?.navigate("MealsDetailsScreen")})
+              ItemMeal(it, action = {nav?.navigate(Screen.MealsDetailsScreen.route)})
           }
     }
 }
